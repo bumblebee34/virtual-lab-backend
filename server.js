@@ -1,11 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const config = require('config');
+const cors = require('cors');
 const app = express();
 
 // Body parser middleware
 app.use(express.json());
-
+app.use(cors())
 // Connection details of db
 const db = config.get('mongoURI');
 
