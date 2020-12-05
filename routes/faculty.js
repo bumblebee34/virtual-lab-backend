@@ -14,14 +14,14 @@ router.post('/', (req, res) => {
 
     // Check if anything is null
     if(!name || !email || !password || !subject)
-        return res.status(400).json({ error: "Please enter all fields" });
+        return res.status(400).json({ msg: "Please enter all fields" });
     
     // Checking for existing user
     User.findOne({ email })
         .then(user => {
 
             // Report user already exists
-            if(user) return res.status(400).json({ error: "User already exists" });
+            if(user) return res.status(400).json({ msg: "User already exists" });
 
             const newUser = new User({
                 name,
@@ -42,10 +42,7 @@ router.post('/', (req, res) => {
                     newUser.save()
                         .then(user => {
                             res.json({
-                                id: user.id,
-                                name: user.name,
-                                emial: user.email,
-                                subject: user.subject
+                                msg: "Registration successful, please login"
                             });
                         });
                 });

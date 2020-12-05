@@ -2,31 +2,31 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Creating Schema
-const UserSchema = new Schema({
+const AssignmentSchema = new Schema({
     name: {
         type: String,
         required: true
     },
-    email: {
+    year: {
         type: String,
         required: true
     },
-    password: {
-        type: String,
-        required: true
-    },
-    register_date: {
+    created_date: {
         type: Date,
         default: Date.now
+    },
+    due_date:{
+        type: Date,
+        required: true
     },
     subject: {
         type: String,
         required: true
     },
-    type: {
+    description: {
         type: String,
-        default: "Faculty"
-    }
+    },
+    
 });
 
-module.exports = mongoose.model('faculty', UserSchema);
+module.exports = mongoose.model('assignment', AssignmentSchema);

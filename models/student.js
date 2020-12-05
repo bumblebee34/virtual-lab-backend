@@ -19,13 +19,17 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    year : {
+        type: String,
+        required: true
+    },
     register_date: {
         type: Date,
         default: Date.now
     },
-    class_name: {
+    type: {
         type: String,
-        required: true
+        default: "Student"
     }
 });
 

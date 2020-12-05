@@ -10,25 +10,25 @@ const User = require('../models/student');
 router.post('/', (req, res) => {
 
     // Retrieve data from request body
-    const { name, prn, email, password, class_name } = req.body;
+    const { name, prn, email, password, year } = req.body;
 
     // Check if anything is null
-    if(!name || !prn || !email || !password || !class_name)
-        return res.status(400).json({ error: "Please enter all fields" });
-    
+    if(!name || !prn || !email || !password || !year )
+        return res.status(400).json({ msg: "Please enter all fields" });
+
     // Checking for existing user
     User.findOne({ prn })
         .then(user => {
 
             // Report user already exists
-            if(user) return res.status(400).json({ error: "User already exists" });
+            if(user) return res.status(400).json({ msg: "User already exists" });
 
             const newUser = new User({
                 name,
                 prn,
                 email,
                 password,
-                class_name
+                year
             });
 
             // Hash the password
@@ -43,11 +43,7 @@ router.post('/', (req, res) => {
                     newUser.save()
                         .then(user => {
                             res.json({
-                                id: user.id,
-                                name: user.name,
-                                prn: user.prn,
-                                emial: user.email,
-                                class_name: user.class_name
+                                msg: "Registration successful, please login"
                             });
                         });
                 });
