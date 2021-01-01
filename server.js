@@ -12,7 +12,7 @@ const app = express();
 
 // Body parser middleware
 app.use(bodyParser.json());
-app.use(cors())
+app.use(cors({ origin: "*" }))
 
 // Connection details of db
 const mongoURI = config.get('mongoURI');
