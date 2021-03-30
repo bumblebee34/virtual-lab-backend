@@ -9,10 +9,10 @@ const Assignment = require('../models/assignment');
 router.post('/', (req, res) => {
 
     // Retrieve data from request body
-    const { name, estimated_time_to_complete, assigned_date, due_date, completed_count, description, completed_students } = req.body;
+    const { name, estimated_time_to_complete, assigned_date, due_date, completed_count, description, questions } = req.body;
 
     // Check if anything is null
-    if(!name || !estimated_time_to_complete || !assigned_date || !due_date || !completed_count || !description || !completed_students)
+    if(!name || !estimated_time_to_complete || !assigned_date || !due_date || !completed_count || !description || !questions)
         return res.status(400).json({ msg: "Please enter all fields" });
     
     const assignment = new Assignment({
@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
         due_date,
         completed_count,
         description,
-        completed_students
+        questions
     });
 
     assignment.save()

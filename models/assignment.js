@@ -26,13 +26,13 @@ const AssignmentSchema = new Schema({
     description: {
         type: String,
     },
-    completed_students:[
+    questions: [
         {
-            student_name:{
+            type:{
                 type: String,
                 required: true
             },
-            prn:{
+            question:{
                 type: String,
                 required: true
             },
@@ -40,14 +40,42 @@ const AssignmentSchema = new Schema({
                 type: String,
                 required: true
             },
-            date:{
-                type: Date,
-                required: true
-            },
-            time:{
+            answer:{
                 type: String,
                 required: true
-            }
+            },
+            attempted:[
+                {
+                    student_name:{
+                        type: String,
+                        required: true
+                    },
+                    prn:{
+                        type: String,
+                        required: true
+                    },
+                    student_answer:{
+                        type: String,
+                        required: true
+                    },
+                    correct:{
+                        type: String,
+                        required: true
+                    },
+                    student_marks:{
+                        type: String,
+                        required: true
+                    },
+                    date:{
+                        type: Date,
+                        required: true
+                    },
+                    time:{
+                        type: String,
+                        required: true
+                    }
+                }
+            ]
         }
     ]
 });
