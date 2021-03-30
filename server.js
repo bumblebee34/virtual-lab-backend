@@ -17,7 +17,7 @@ app.use(cors({ origin: "*" }))
 // Connection details of db
 const mongoURI = config.get('mongoURI');
 
-const conn = mongoose.createConnection(mongoURI);
+const conn = mongoose.createConnection(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true});
 
 mongoose.connect(mongoURI, { useNewUrlParser: true }, { useUnifiedTopology: true });
 
@@ -84,6 +84,7 @@ app.use('/user/student' , require('./routes/student'));
 app.use('/user/faculty' , require('./routes/faculty'));
 app.use('/user/login/student' , require('./routes/loginStudent'));
 app.use('/user/login/faculty' , require('./routes/loginFaculty'));
+app.use('/assignment' , require('./routes/assignment'));
 
 const port = process.env.NODE_ENV || 5000;
 

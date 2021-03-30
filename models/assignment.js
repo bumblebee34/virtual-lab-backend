@@ -7,11 +7,11 @@ const AssignmentSchema = new Schema({
         type: String,
         required: true
     },
-    year: {
+    estimated_time_to_complete: {
         type: String,
         required: true
     },
-    created_date: {
+    assigned_date: {
         type: Date,
         default: Date.now
     },
@@ -19,14 +19,37 @@ const AssignmentSchema = new Schema({
         type: Date,
         required: true
     },
-    subject: {
+    completed_count: {
         type: String,
         required: true
     },
     description: {
         type: String,
     },
-    
+    completed_students:[
+        {
+            student_name:{
+                type: String,
+                required: true
+            },
+            prn:{
+                type: String,
+                required: true
+            },
+            marks:{
+                type: String,
+                required: true
+            },
+            date:{
+                type: Date,
+                required: true
+            },
+            time:{
+                type: String,
+                required: true
+            }
+        }
+    ]
 });
 
 module.exports = mongoose.model('assignment', AssignmentSchema);
