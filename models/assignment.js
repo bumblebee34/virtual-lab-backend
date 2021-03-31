@@ -26,6 +26,18 @@ const AssignmentSchema = new Schema({
     description: {
         type: String,
     },
+    assignment_attempted:[
+        {
+            prn: {
+                type: String,
+                required: true
+            },
+            date: {
+                type: Date,
+                required: true
+            }
+        }
+    ],
     questions: [
         {
             type:{
@@ -63,14 +75,6 @@ const AssignmentSchema = new Schema({
                         required: true
                     },
                     student_marks:{
-                        type: String,
-                        required: true
-                    },
-                    date:{
-                        type: Date,
-                        required: true
-                    },
-                    time:{
                         type: String,
                         required: true
                     }
