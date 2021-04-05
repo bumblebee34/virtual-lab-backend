@@ -26,7 +26,7 @@ const AssignmentSchema = new Schema({
     description: {
         type: String,
     },
-    assignment_attempted:[
+    assignment_attempted: [
         {
             prn: {
                 type: String,
@@ -34,6 +34,30 @@ const AssignmentSchema = new Schema({
             },
             date: {
                 type: Date,
+                required: true
+            },
+            que1_ans: {
+                type: String,
+                required: true
+            },
+            que1_mark: {
+                type: String,
+                required: true
+            },
+            que2_ans: {
+                type: String,
+                required: true
+            },
+            que2_mark: {
+                type: String,
+                required: true
+            },
+            que3_ans: {
+                type: String,
+                required: true
+            },
+            que3_mark: {
+                type: String,
                 required: true
             }
         }
