@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 // Creating Schema
 const AssignmentSchema = new Schema({
-    name: {
+    assignment_name: {
         type: String,
         required: true
     },
@@ -23,45 +23,10 @@ const AssignmentSchema = new Schema({
         type: String,
         required: true
     },
-    description: {
+    total_marks: {
         type: String,
+        required: true
     },
-    assignment_attempted: [
-        {
-            prn: {
-                type: String,
-                required: true
-            },
-            date: {
-                type: Date,
-                required: true
-            },
-            que1_ans: {
-                type: String,
-                required: true
-            },
-            que1_mark: {
-                type: String,
-                required: true
-            },
-            que2_ans: {
-                type: String,
-                required: true
-            },
-            que2_mark: {
-                type: String,
-                required: true
-            },
-            que3_ans: {
-                type: String,
-                required: true
-            },
-            que3_mark: {
-                type: String,
-                required: true
-            }
-        }
-    ],
     questions: [
         {
             type:{
@@ -76,29 +41,37 @@ const AssignmentSchema = new Schema({
                 type: String,
                 required: true
             },
-            answer:{
+            keywords: []
+        }
+    ],
+    answered_by: [
+        {
+            prn: {
                 type: String,
                 required: true
             },
-            attempted:[
+            date: {
+                type: Date,
+                default: Date.now
+            },
+            total_marks: {
+                type: String,
+                required: true
+            },
+            remark: {
+                type: String,
+            },
+            questions: [
                 {
-                    student_name:{
+                    que_ans: {
                         type: String,
                         required: true
                     },
-                    prn:{
+                    student_mark: {
                         type: String,
                         required: true
                     },
-                    student_answer:{
-                        type: String,
-                        required: true
-                    },
-                    correct:{
-                        type: String,
-                        required: true
-                    },
-                    student_marks:{
+                    marks: {
                         type: String,
                         required: true
                     }

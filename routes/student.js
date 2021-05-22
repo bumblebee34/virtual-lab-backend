@@ -10,7 +10,7 @@ const User = require('../models/student');
 router.post('/', (req, res) => {
 
     // Retrieve data from request body
-    const { name, prn, email, password, year } = req.body;
+    const { name, prn, email, password, year, assignments_attempted } = req.body;
 
     // Check if anything is null
     if(!name || !prn || !email || !password || !year )
@@ -28,7 +28,8 @@ router.post('/', (req, res) => {
                 prn,
                 email,
                 password,
-                year
+                year,
+                assignments_attempted
             });
 
             // Hash the password
@@ -49,6 +50,34 @@ router.post('/', (req, res) => {
                 });
             });
         });
+
+});
+
+router.post('/getData', (req, res) => {
+
+    // Retrieve data from request body
+    const { prn} = req.body;
+
+    // Check if anything is null
+    if(!prn)
+        return res.status(400).json({ msg: "Please enter student prn" });
+
+    // Checking for existing user
+    User.findOne({ prn })
+        .then(user => {
+            if(!user)
+            {
+                res.json({
+                    assignments:[],
+                    msg: "PRN not found"
+                })
+            }
+            res.json({
+                assignments: user.assignments_attempted,
+                msg: "Success"
+            })
+        })
+        .catch(err => res.json({ msg: err}));
 
 });
 

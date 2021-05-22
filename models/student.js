@@ -30,7 +30,47 @@ const UserSchema = new Schema({
     type: {
         type: String,
         default: "Student"
-    }
+    },
+    assignments_attempted: [
+        {
+            assignment_name: {
+                type: String,
+                required: true
+            },
+            student_score: {
+                type: String,
+                required: true
+            },
+            assignment_score: {
+                type: String,
+                required: true
+            },
+            remark: {
+                type: String,
+                required: true
+            },
+            date: {
+                type: String,
+                required: true
+            },
+            questions: [
+                {
+                    que_ans: {
+                        type: String,
+                        required: true
+                    },
+                    student_mark: {
+                        type: String,
+                        required: true
+                    },
+                    marks: {
+                        type: String,
+                        required: true
+                    }
+                }
+            ]
+        }
+    ]
 });
 
 module.exports = mongoose.model('student', UserSchema);
