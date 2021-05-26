@@ -112,6 +112,8 @@ router.post('/update_data', (req, res) => {
     .then(assignment => {
         assignment.answered_by.forEach(student => {
             if(student.prn == prn){
+                var totmarks = parseInt(student.total_marks) - parseInt(student.questions[parseInt(que_no)].student_mark) + parseInt(marks);
+                student.total_marks = totmarks.toString();
                 student.questions[parseInt(que_no)].student_mark = marks;
                 if(remark !== ""){
                     student.remark = remark
