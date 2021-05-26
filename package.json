@@ -1,13 +1,10 @@
 {
-  "homepage": "https://bumblebee34.github.io/virtual-lab-backend",
   "name": "virtual-lab-backend",
   "version": "1.0.0",
   "description": "\"Virtual Lab Backend\"",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -b master -d build"
+    "start": "node server"
   },
   "author": "",
   "license": "ISC",
