@@ -107,7 +107,7 @@ router.post('/update_data', (req, res) => {
     // Check if anything is null
     if(!name || !prn || !que_no || !marks)
     return res.status(400).json({ msg: "Please enter all fields" });
-    
+
     Assignment.findOne({assignment_name: name}) 
     .then(assignment => {
         assignment.answered_by.forEach(student => {
@@ -130,6 +130,8 @@ router.post('/update_data', (req, res) => {
     .then(student => {
         student.assignments_attempted.forEach(assignment => {
             if(assignment.assignment_name == name){
+                var totmarks = parseInt(assignment.student_score) - parseInt(assignment.questions[parseInt(que_no)].student_mark) + parseInt(marks);
+                assignment.student_score = totmarks.toString();
                 assignment.questions[parseInt(que_no)].student_mark = marks;
                 if(remark !== ""){
                     assignment.remark = remark
